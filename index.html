@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Making bits... MORE! ">
+  <meta name="theme-color" content="#0A0A0F">
+  <title>Bits and More | Web Design &amp; Development</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/easter-eggs.css">
+</head>
+<body>
+
+  <!-- BACKGROUND LAYERS -->
+  <div class="blobs" aria-hidden="true">
+    <div class="blob blob--1"></div>
+    <div class="blob blob--2"></div>
+    <div class="blob blob--3"></div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="cursor" aria-hidden="true">
+    <span class="cursor__dot"></span>
+    <span class="cursor__ring"></span>
+  </div>
+
+  <canvas id="paintCanvas" aria-hidden="true"></canvas>
+
+  <!-- NAVIGATION -->
+  <header class="nav">
+    <a class="nav__brand" href="#entrance" aria-label="Bits and More home">
+      <img class="nav__logo" src="assets/Code Tag.png" alt="">
+      <span class="nav__name">Bits and More</span>
+    </a>
+
+    <button class="nav__toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav__links" aria-label="Main navigation">
+      <a class="nav__link" href="#collection">Collection</a>
+      <a class="nav__link" href="#services">Services</a>
+      <a class="nav__link" href="#artist">Artist</a>
+      <a class="nav__link" href="#commission">Commission</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ENTRANCE -->
+    <section id="entrance" class="section hero">
+      <canvas id="heroCanvas" class="hero__canvas" aria-hidden="true"></canvas>
+
+      <div class="container hero__content">
+        <p class="section__eyebrow">Web design &amp; development</p>
+
+        <h1 class="hero__title">
+          <span class="word"><span class="word__inner">Websites</span></span>
+          <span class="word"><span class="word__inner">designs</span></span>
+          <span class="word"><span class="word__inner">and</span></span>
+          <span class="word"><span class="word__inner">More.</span></span>
+        </h1>
+
+        <p class="hero__sub">Making bits... MORE!</p>
+
+        <div class="hero__actions">
+          <a class="btn" href="#collection">View the collection</a>
+          <a class="btn btn--ghost" href="#commission">Commission a piece</a>
+        </div>
+
+        <div class="hero__scroll">
+          <span>Scroll</span>
+          <span class="hero__scroll-line"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLLECTION -->
+    <section id="collection" class="section collection">
+      <div class="container">
+        <div class="collection__intro reveal">
+          <p class="section__eyebrow">cards</p>
+          <h2 class="section__title">Cards</h2>
+          <p class="section__description">
+            Unlock a 7th wonder!
+          </p>
+        </div>
+
+        <div class="egg-progress" aria-live="polite">
+          <div class="egg-progress__copy">
+            <span class="egg-progress__eyebrow">THE DISCOVERY INDEX</span>
+            <span class="egg-progress__count"><strong id="eggCount">0</strong> / 6 discovered</span>
+          </div>
+          <div class="egg-progress__track" role="progressbar" aria-label="Easter eggs discovered" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="eggProgress">
+            <span class="egg-progress__fill" id="eggProgressFill"></span>
+          </div>
+          <p class="egg-progress__hint" id="eggProgressHint">Some things reveal themselves when you play.</p>
+        </div>
+
+        <div class="artworks">
+          <article class="artwork reveal" data-egg="liquid">
+            <button class="artwork__frame egg-trigger egg-trigger--liquid" type="button" aria-label="Explore Violet Drift. Move your pointer over the artwork and click three times.">
+              <div class="artwork__art artwork__art--1"></div>
+              <span class="egg-cue" aria-hidden="true">✳</span>
+              <span class="egg-card-hint" aria-hidden="true">A little movement?</span>
+            </button>
+            <div class="artwork__plate">
+              <h3>Violet Drift</h3>
+              <p>Liquid Forms · 01</p>
+            </div>
+          </article>
+
+          <article class="artwork reveal" data-egg="dimension">
+            <button class="artwork__frame egg-trigger egg-trigger--dimension" type="button" aria-label="Explore Nocturne No. 3. Click the artwork five times.">
+              <div class="artwork__art artwork__art--2"></div>
+              <span class="egg-cue" aria-hidden="true">◈</span>
+              <span class="egg-card-hint" aria-hidden="true">Look closer.</span>
+            </button>
+            <div class="artwork__plate">
+              <h3>Nocturne No. 3</h3>
+              <p>Other Dimensions · 02</p>
+            </div>
+          </article>
+
+          <article class="artwork reveal" data-egg="geometry">
+            <button class="artwork__frame egg-trigger egg-trigger--geometry" type="button" aria-label="Explore Signal and Noise. Click to scramble and rebuild the geometry.">
+              <div class="artwork__art artwork__art--3"></div>
+              <span class="egg-cue" aria-hidden="true">⌘</span>
+              <span class="egg-card-hint" aria-hidden="true">Break the pattern.</span>
+            </button>
+            <div class="artwork__plate">
+              <h3>Signal &amp; Noise</h3>
+              <p>Soft Geometry · 03</p>
+            </div>
+          </article>
+
+          <article class="artwork reveal" data-egg="bloom">
+            <button class="artwork__frame egg-trigger egg-trigger--bloom" type="button" aria-label="Explore Afterglow. Move your pointer over the artwork, then click to release particles.">
+              <div class="artwork__art artwork__art--4"></div>
+              <span class="egg-cue" aria-hidden="true">✿</span>
+              <span class="egg-card-hint" aria-hidden="true">Make it bloom.</span>
+            </button>
+            <div class="artwork__plate">
+              <h3>Afterglow</h3>
+              <p>Strange Blooms · 04</p>
+            </div>
+          </article>
+
+          <article class="artwork reveal" data-egg="spectrum">
+            <button class="artwork__frame egg-trigger egg-trigger--spectrum" type="button" aria-label="Explore Slow Orbit. Click to cycle through hidden colour palettes.">
+              <div class="artwork__art artwork__art--5"></div>
+              <span class="egg-cue" aria-hidden="true">◉</span>
+              <span class="egg-card-hint" aria-hidden="true">Change the spectrum.</span>
+            </button>
+            <div class="artwork__plate">
+              <h3>Slow Orbit</h3>
+              <p>Digital Matter · 05</p>
+            </div>
+          </article>
+
+          <article class="artwork reveal" data-egg="unknown">
+            <button class="artwork__frame egg-trigger egg-trigger--unknown" type="button" aria-label="Explore Static Bloom. Discover the other five pieces to reveal its secret.">
+              <div class="artwork__art artwork__art--6"></div>
+              <span class="egg-cue" aria-hidden="true">?</span>
+              <span class="egg-card-hint" aria-hidden="true">The unknown.</span>
+            </button>
+            <div class="artwork__plate">
+              <h3>Static Bloom</h3>
+              <p>The Unknown · 06</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="secret-artwork" id="secretArtwork" hidden>
+          <div class="secret-artwork__visual" aria-hidden="true">
+            <span class="secret-artwork__orbit secret-artwork__orbit--one"></span>
+            <span class="secret-artwork__orbit secret-artwork__orbit--two"></span>
+            <span class="secret-artwork__core"></span>
+            <span class="secret-artwork__spark secret-artwork__spark--one">✳</span>
+            <span class="secret-artwork__spark secret-artwork__spark--two">✦</span>
+            <span class="secret-artwork__spark secret-artwork__spark--three">·</span>
+          </div>
+          <div class="secret-artwork__copy">
+            <p class="section__eyebrow">07 · THE HIDDEN PIECE</p>
+            <h3>The 7th card!</h3>
+            <p>
+              Congratulations! You have unlocked the 7th card uuum... good for you.
+            </p>
+            <span class="secret-artwork__signature">BITS AND MORE — KEEP EXPERIMENTING.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span class="marquee__item">Design without boundaries ✳</span>
+        <span class="marquee__item">Design without boundaries ✳</span>
+        <span class="marquee__item">Design without boundaries ✳</span>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section id="services" class="section services">
+      <div class="container">
+        <div class="services__intro reveal">
+          <p class="section__eyebrow">What I do</p>
+          <h2 class="section__title">Services</h2>
+        </div>
+
+        <div class="services__list">
+          <article class="service reveal">
+            <span class="service__num">01</span>
+            <div class="service__content">
+              <h3>Website design</h3>
+              <p>Distinctive visual identities and carefully composed digital experiences.</p>
+            </div>
+          </article>
+
+          <article class="service reveal">
+            <span class="service__num">02</span>
+            <div class="service__content">
+              <h3>Front-end development</h3>
+              <p>Responsive, accessible and polished websites built for the modern web.</p>
+            </div>
+          </article>
+
+          <article class="service reveal">
+            <span class="service__num">03</span>
+            <div class="service__content">
+              <h3>Motion &amp; interaction</h3>
+              <p>Purposeful animation and interaction that give digital spaces character.</p>
+            </div>
+          </article>
+
+          <article class="service reveal">
+            <span class="service__num">04</span>
+            <div class="service__content">
+              <h3>Brand to web</h3>
+              <p>Translating a brand's personality into a coherent online presence.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTIST -->
+    <section id="artist" class="section artist">
+      <div class="container">
+        <div class="artist__layout">
+          <div class="artist__portrait reveal">
+            <img
+              class="artist__portrait-art"
+              src="Teddy-logo.jpg"
+              alt="Portrait of Teddy"
+            >
+            <div class="artist__portrait-plate">Shall be known in due time...</div>
+          </div>
+
+          <div class="artist__content reveal">
+            <p class="section__eyebrow">The artist</p>
+            <h2 class="section__title">About</h2>
+
+            <p>
+              I'm Teddy, an upcoming web designer and software dev (sort of).
+              I am unconventional, and I BELIVE nothing should be boring by design.
+              If interested in a website, or a collab, feel free to reach out on
+              Whatsapp +254 794 799 255.
+            </p>
+
+            <p>
+              I create distinctive digital experiences with thoughtful
+              layouts, expressive visuals and interactions that feel...
+              deliberate? This is not an official Website, IT IS NOT AN OFFICIAL
+              WEBSITE. And I am NOT a professional developer.
+            </p>
+
+            <div class="artist__tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>Motion</span>
+              <span>Responsive</span>
+              <span>Performance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span class="marquee__item">Make something memorable ✳</span>
+        <span class="marquee__item">Make something memorable ✳</span>
+        <span class="marquee__item">Make something memorable ✳</span>
+      </div>
+    </div>
+
+    <!-- COMMISSION -->
+    <section id="commission" class="section commission">
+      <div class="container">
+        <div class="commission__intro reveal">
+          <p class="section__eyebrow">Let's make something</p>
+          <h2 class="section__title">Commission a piece</h2>
+          <p class="section__description">Have a project in mind? Reach out for free brainstorming!</p>
+        </div>
+
+        <form id="commissionForm" class="form" action="#">
+          <div class="form__field">
+            <label for="commissionName">Your name</label>
+            <input type="text" id="commissionName" name="name" autocomplete="name" required>
+          </div>
+
+          <div class="form__field">
+            <label for="commissionEmail">Email address</label>
+            <input type="email" id="commissionEmail" name="email" autocomplete="email" required>
+          </div>
+
+          <div class="form__field">
+            <label for="commissionType">Project type</label>
+            <select id="commissionType" name="projectType" required>
+              <option value="" disabled selected>Select a project type</option>
+              <option value="Landing page">Landing page</option>
+              <option value="Portfolio">Portfolio</option>
+              <option value="Business site">Business site</option>
+              <option value="Something wild">Something wild</option>
+            </select>
+          </div>
+
+          <div class="form__field">
+            <label for="commissionMessage">Tell me about your project</label>
+            <textarea id="commissionMessage" name="message" rows="5" required></textarea>
+          </div>
+
+          <button class="btn" type="submit">Send commission</button>
+          <p id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; <span id="year"></span> Bits and More</p>
+
+      <button id="paintToggle" class="paint-toggle" type="button" aria-label="Toggle paint mode" aria-pressed="false">✳</button>
+
+      <a href="#entrance">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <!-- LIBRARIES -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <!-- PROJECT SCRIPTS -->
+  <script src="js/hero.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/extras.js"></script>
+
+</body>
+</html>
