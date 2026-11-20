@@ -1,0 +1,691 @@
+
+/* ========================================
+   BITS AND MORE — COLLECTION EASTER EGGS
+   Loaded after style.css; existing styles remain intact.
+======================================== */
+
+.egg-progress {
+  display: grid;
+  gap: 0.8rem;
+  max-width: 560px;
+  margin: 0 0 2.5rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(201, 184, 255, 0.14);
+  border-radius: 14px;
+  background: rgba(19, 17, 28, 0.56);
+}
+
+.egg-progress__copy {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.egg-progress__eyebrow {
+  color: var(--lavender);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.egg-progress__count {
+  color: var(--muted);
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.egg-progress__count strong {
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.egg-progress__track {
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(201, 184, 255, 0.12);
+}
+
+.egg-progress__fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--purple), var(--lavender));
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s cubic-bezier(.22, 1, .36, 1);
+}
+
+.egg-progress__hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.7rem;
+  line-height: 1.5;
+}
+
+.egg-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  isolation: isolate;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.egg-trigger:focus-visible {
+  outline: 2px solid var(--lavender);
+  outline-offset: 5px;
+}
+
+.egg-trigger::after {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  border: 1px solid transparent;
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+  transition: border-color 0.25s ease;
+}
+
+.egg-trigger:hover::after,
+.egg-trigger:focus-visible::after,
+.artwork.is-discovered .egg-trigger::after {
+  border-color: rgba(201, 184, 255, 0.55);
+}
+
+.egg-cue {
+  position: absolute;
+  z-index: 5;
+  top: 1rem;
+  right: 1rem;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  background: rgba(10, 10, 15, 0.35);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+  pointer-events: none;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.egg-card-hint {
+  position: absolute;
+  z-index: 5;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 9px;
+  background: rgba(10, 10, 15, 0.55);
+  color: #fff;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.egg-trigger:hover .egg-card-hint,
+.egg-trigger:focus-visible .egg-card-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.artwork.is-discovered .egg-cue {
+  background: rgba(107, 47, 217, 0.75);
+  color: #fff;
+  transform: rotate(45deg);
+}
+
+.artwork.is-discovered .egg-cue::after {
+  position: absolute;
+  content: "✓";
+  font-size: 0.65rem;
+  transform: rotate(-45deg);
+}
+
+/* ========================================
+   1. VIOLET DRIFT — LIQUID RESPONSE
+======================================== */
+
+.egg-trigger--liquid {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+}
+
+.egg-trigger--liquid::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at var(--pointer-x) var(--pointer-y),
+      rgba(201, 184, 255, 0.42),
+      rgba(139, 92, 246, 0.16) 18%,
+      transparent 48%
+    );
+  mix-blend-mode: screen;
+  transition: opacity 0.35s ease;
+}
+
+.egg-trigger--liquid:hover::before,
+.egg-trigger--liquid:focus-visible::before {
+  opacity: 1;
+}
+
+.egg-trigger--liquid .artwork__art {
+  transform-origin: var(--pointer-x) var(--pointer-y);
+  transition:
+    transform 0.7s cubic-bezier(.2, .8, .2, 1),
+    filter 0.7s ease;
+}
+
+.egg-trigger--liquid:hover .artwork__art {
+  transform: scale(1.1) skew(-1deg, 1deg);
+  filter: saturate(1.45) contrast(1.08);
+}
+
+.egg-ripple {
+  position: absolute;
+  z-index: 3;
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(242, 238, 255, 0.85);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.2);
+  animation: egg-ripple 0.8s ease-out forwards;
+}
+
+@keyframes egg-ripple {
+  0% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(8);
+  }
+}
+
+/* ========================================
+   2. NOCTURNE — DIMENSIONAL SHIFT
+======================================== */
+
+.egg-trigger--dimension .artwork__art {
+  transform-style: preserve-3d;
+  transition:
+    transform 0.8s cubic-bezier(.2, .8, .2, 1),
+    filter 0.7s ease;
+}
+
+.egg-trigger--dimension.dimension-flash .artwork__art {
+  animation: egg-dimension-flash 0.85s cubic-bezier(.2, .8, .2, 1);
+}
+
+@keyframes egg-dimension-flash {
+  0% {
+    transform: perspective(700px) rotateY(0) scale(1);
+    filter: brightness(1);
+  }
+  35% {
+    transform: perspective(700px) rotateY(90deg) scale(0.82);
+    filter: hue-rotate(100deg) brightness(1.7);
+  }
+  65% {
+    transform: perspective(700px) rotateY(210deg) scale(0.9);
+    filter: hue-rotate(220deg) brightness(1.4);
+  }
+  100% {
+    transform: perspective(700px) rotateY(360deg) scale(1);
+    filter: hue-rotate(0) brightness(1);
+  }
+}
+
+.egg-trigger--dimension.dimension-open .artwork__art {
+  animation: egg-dimension-open 1.2s cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+@keyframes egg-dimension-open {
+  0% {
+    transform: perspective(700px) rotateY(0) scale(1);
+    filter: brightness(1);
+  }
+  45% {
+    transform: perspective(700px) rotateY(180deg) scale(0.72);
+    filter: hue-rotate(160deg) brightness(1.8);
+  }
+  75% {
+    transform: perspective(700px) rotateY(300deg) scale(1.12);
+    filter: hue-rotate(280deg) saturate(1.8);
+  }
+  100% {
+    transform: perspective(700px) rotateY(360deg) scale(1.04);
+    filter: hue-rotate(125deg) saturate(1.5);
+  }
+}
+
+/* ========================================
+   3. SIGNAL & NOISE — FRACTURE
+======================================== */
+
+.egg-trigger--geometry .artwork__art {
+  transition:
+    transform 0.65s cubic-bezier(.22, 1, .36, 1),
+    filter 0.65s ease;
+}
+
+.egg-trigger--geometry.geometry-scrambled .artwork__art {
+  transform: rotate(3deg) scale(0.96);
+  filter: hue-rotate(65deg) contrast(1.2);
+}
+
+.egg-trigger--geometry.geometry-reassembling .artwork__art {
+  animation: egg-reassemble 0.75s cubic-bezier(.16, 1, .3, 1);
+}
+
+@keyframes egg-reassemble {
+  0% {
+    transform: rotate(-8deg) scale(0.8);
+    filter: blur(5px) brightness(1.8);
+  }
+  45% {
+    transform: rotate(5deg) scale(1.08);
+    filter: blur(1px) brightness(1.5);
+  }
+  100% {
+    transform: rotate(0) scale(1);
+    filter: none;
+  }
+}
+
+.egg-fracturing {
+  animation: egg-card-vibrate 0.09s linear 7;
+}
+
+@keyframes egg-card-vibrate {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(2px, -1px); }
+  60% { transform: translate(-1px, -2px); }
+  80% { transform: translate(2px, 1px); }
+}
+
+.egg-fracture-layer {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  perspective: 900px;
+}
+
+.egg-shard {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  transform-origin: 50% 50%;
+  backface-visibility: hidden;
+  animation: egg-shatter 0.85s cubic-bezier(.2, .75, .25, 1) forwards;
+}
+
+@keyframes egg-shatter {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0) scale(1);
+    filter: brightness(1);
+  }
+  25% {
+    opacity: 1;
+    filter: brightness(1.8);
+  }
+  100% {
+    opacity: 0;
+    transform:
+      translate3d(var(--shard-x), var(--shard-y), 0)
+      rotate(var(--shard-r))
+      scale(0.72);
+    filter: brightness(1.6) blur(2px);
+  }
+}
+
+/* ========================================
+   4. AFTERGLOW — BLOOM
+======================================== */
+
+.egg-trigger--bloom .artwork__art {
+  transform-origin: center;
+  transition:
+    transform 0.8s cubic-bezier(.16, 1, .3, 1),
+    filter 0.8s ease;
+}
+
+.egg-trigger--bloom.bloom-open .artwork__art {
+  animation: egg-bloom-open 1.1s cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+@keyframes egg-bloom-open {
+  0% {
+    transform: scale(1);
+    filter: brightness(1) saturate(1);
+  }
+  40% {
+    transform: scale(1.14);
+    filter: brightness(1.5) saturate(1.8);
+  }
+  70% {
+    transform: scale(1.07) rotate(2deg);
+    filter: brightness(1.25) saturate(1.6);
+  }
+  100% {
+    transform: scale(1.1);
+    filter: brightness(1.25) saturate(1.5);
+  }
+}
+
+.egg-trigger--bloom.bloom-open .egg-cue {
+  transform: rotate(135deg) scale(1.2);
+}
+
+/* ========================================
+   5. SLOW ORBIT — SPECTRUM
+======================================== */
+
+.egg-trigger--spectrum::before {
+  position: absolute;
+  z-index: 1;
+  inset: -50%;
+  content: "";
+  pointer-events: none;
+  opacity: 0;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(139, 92, 246, 0.0) 70deg,
+    rgba(201, 184, 255, 0.38) 110deg,
+    transparent 150deg,
+    transparent 360deg
+  );
+  transition: opacity 0.4s ease;
+}
+
+.egg-trigger--spectrum:hover::before {
+  opacity: 1;
+  animation: egg-orbit-light 4s linear infinite;
+}
+
+@keyframes egg-orbit-light {
+  to { transform: rotate(360deg); }
+}
+
+.egg-trigger--spectrum .artwork__art {
+  transition:
+    filter 0.6s ease,
+    transform 0.6s cubic-bezier(.22, 1, .36, 1);
+}
+
+.egg-trigger--spectrum[data-palette="1"] .artwork__art {
+  filter: hue-rotate(65deg) saturate(1.5);
+  transform: scale(1.035);
+}
+
+.egg-trigger--spectrum[data-palette="2"] .artwork__art {
+  filter: hue-rotate(155deg) saturate(1.7) contrast(1.15);
+  transform: scale(1.06);
+}
+
+.egg-trigger--spectrum[data-palette="3"] .artwork__art {
+  filter: hue-rotate(255deg) saturate(1.9) brightness(1.25);
+  transform: scale(1.09);
+}
+
+/* ========================================
+   6. STATIC BLOOM — THE UNKNOWN
+======================================== */
+
+.egg-trigger--unknown.unknown-locked {
+  animation: egg-unknown-glitch 0.55s steps(2, end);
+}
+
+.egg-trigger--unknown.unknown-locked .artwork__art {
+  filter: grayscale(0.65) contrast(1.25);
+}
+
+@keyframes egg-unknown-glitch {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(-4px); }
+  30% { transform: translateX(3px); }
+  45% { transform: translateX(-3px); }
+  60% { transform: translateX(2px); }
+  75% { transform: translateX(-1px); }
+}
+
+.egg-trigger--unknown.unknown-revealed .artwork__art {
+  animation: egg-unknown-reveal 1.3s cubic-bezier(.16, 1, .3, 1) forwards;
+}
+
+@keyframes egg-unknown-reveal {
+  0% {
+    transform: scale(0.85);
+    filter: brightness(0) saturate(0);
+  }
+  35% {
+    transform: scale(1.12);
+    filter: brightness(2) saturate(2) hue-rotate(90deg);
+  }
+  65% {
+    transform: scale(0.98);
+    filter: brightness(1.4) saturate(1.8);
+  }
+  100% {
+    transform: scale(1.08);
+    filter: hue-rotate(90deg) brightness(1.3) saturate(1.5);
+  }
+}
+
+/* ========================================
+   SECRET SEVENTH ARTWORK
+======================================== */
+
+.secret-artwork {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+  align-items: center;
+  margin-top: 4rem;
+  padding: 1.25rem;
+  overflow: hidden;
+  border: 1px solid rgba(201, 184, 255, 0.25);
+  border-radius: calc(var(--radius) + 4px);
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(139, 92, 246, 0.2), transparent 45%),
+    linear-gradient(135deg, rgba(27, 17, 48, 0.95), rgba(10, 10, 15, 0.96));
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.secret-artwork[hidden] {
+  display: none;
+}
+
+.secret-artwork.is-unlocked {
+  animation: secret-artwork-reveal 0.9s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+@keyframes secret-artwork-reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.secret-artwork__visual {
+  position: relative;
+  display: grid;
+  min-height: 260px;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 12px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.22), transparent 65%);
+}
+
+.secret-artwork__core {
+  position: relative;
+  z-index: 2;
+  width: min(34vw, 150px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(242, 238, 255, 0.8);
+  border-radius: 36% 64% 58% 42% / 43% 37% 63% 57%;
+  background:
+    radial-gradient(circle at 32% 28%, #fff 0, #C9B8FF 8%, transparent 24%),
+    radial-gradient(circle at 65% 70%, #D946EF 0, transparent 36%),
+    linear-gradient(135deg, #8B5CF6, #30145E 65%, #0A0A0F);
+  box-shadow: 0 0 55px rgba(139, 92, 246, 0.45), inset 0 0 35px rgba(255, 255, 255, 0.18);
+  animation: secret-core-float 6s ease-in-out infinite alternate;
+}
+
+.secret-artwork__orbit {
+  position: absolute;
+  width: min(55vw, 230px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(201, 184, 255, 0.5);
+  border-radius: 50%;
+}
+
+.secret-artwork__orbit--one {
+  transform: rotateX(65deg) rotateZ(-25deg);
+}
+
+.secret-artwork__orbit--two {
+  transform: rotateY(65deg) rotateZ(25deg);
+}
+
+.secret-artwork__spark {
+  position: absolute;
+  z-index: 3;
+  color: var(--lavender);
+  font-size: 1.3rem;
+  text-shadow: 0 0 18px var(--violet);
+}
+
+.secret-artwork__spark--one {
+  top: 22%;
+  left: 25%;
+}
+
+.secret-artwork__spark--two {
+  right: 23%;
+  bottom: 24%;
+}
+
+.secret-artwork__spark--three {
+  top: 25%;
+  right: 30%;
+  font-size: 2rem;
+}
+
+@keyframes secret-core-float {
+  from {
+    transform: translateY(-8px) rotate(-8deg);
+  }
+  to {
+    transform: translateY(8px) rotate(8deg);
+  }
+}
+
+.secret-artwork__copy {
+  max-width: 520px;
+}
+
+.secret-artwork__copy h3 {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  letter-spacing: -0.06em;
+  line-height: 0.98;
+}
+
+.secret-artwork__copy > p:not(.section__eyebrow) {
+  max-width: 460px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.secret-artwork__signature {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--lavender);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+:root.theme-flip .egg-progress,
+:root.theme-flip .secret-artwork {
+  background-color: rgba(233, 224, 255, 0.78);
+  border-color: rgba(91, 33, 182, 0.2);
+}
+
+:root.theme-flip .egg-progress__count strong {
+  color: var(--text);
+}
+
+@media (min-width: 768px) {
+  .secret-artwork {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 3rem;
+    padding: 2rem;
+  }
+
+  .secret-artwork__visual {
+    min-height: 340px;
+  }
+}
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .egg-progress__fill,
+  .egg-card-hint,
+  .egg-cue,
+  .secret-artwork,
+  .secret-artwork__core,
+  .egg-ripple,
+  .egg-fracture-layer,
+  .egg-shard {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .secret-artwork.is-unlocked {
+    opacity: 1;
+    transform: none;
+  }
+
+  .egg-trigger--liquid::before,
+  .egg-trigger--spectrum::before {
+    animation: none !important;
+  }
+}
